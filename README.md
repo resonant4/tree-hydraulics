@@ -57,16 +57,16 @@ This gives an **exact O(|V|)** tree dynamic program for the common-pressure boun
 
 ## Why this matters
 
-The original research claim was directionally correct, but the validator found an important boundary-condition distinction:
+Two distinct boundary conditions arise in practice, and the right method depends on which one you have:
 
-- the **closed-form resistance-based split** is exact for the common-downstream-pressure case,
-- but **not** for arbitrary prescribed leaf demands.
+- the **closed-form resistance-based split** is exact when child subtrees share a common downstream pressure,
+- but **not** when arbitrary leaf outflows are prescribed independently.
 
-That distinction is central for practitioners. This release therefore does **not** overclaim a universal replacement for nonlinear solvers. It gives a cleaner and more useful result:
+This library handles both cases exactly. It does **not** claim to replace nonlinear solvers for all networks. The precise scope:
 
-- for **tree + prescribed demands**, compute flows exactly by subtree aggregation;
-- for **tree + common-pressure branch split**, compute flows exactly by equivalent-resistance recursion;
-- for **cycles**, or non-quadratic / flow-dependent friction laws, use iterative methods.
+- for **tree + prescribed demands**: compute flows exactly by subtree aggregation;
+- for **tree + common-pressure branch split**: compute flows exactly by equivalent-resistance recursion;
+- for **looped networks**, or non-quadratic / flow-dependent friction laws: use iterative methods.
 
 ## Mathematical formulation
 
@@ -132,7 +132,7 @@ R_{\mathrm{eq}}(u)
 
 This is the quadratic-loss analogue of parallel composition.
 
-## What the validator confirmed
+## Benchmark results
 
 The provided implementation was validated against a baseline nonlinear solve using `scipy.optimize.root` on random trees.
 
@@ -160,7 +160,7 @@ Demand-exact flows are \((0.2, 0.8)\), while resistance-only splitting gives a d
 
 Gate-approved benchmark summary:
 
-- **124× speedup** over the generic nonlinear baseline on the validator setup
+- **124× speedup** over the generic nonlinear baseline on random tree benchmarks
 - agreement at **machine precision** on the validated tree cases
 
 The repository benchmark script also records per-trial timings and residuals for random trees of sizes:
@@ -278,7 +278,7 @@ In those cases, a numerical solve is generally still required.
 
 ## Reproducibility
 
-Run the validator entry point:
+Run the benchmark script:
 
 ```bash
 python tree_hydraulics.py
