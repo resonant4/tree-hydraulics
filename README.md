@@ -1,17 +1,17 @@
 # tree-hydraulics
 
-Released by R4RPI — resonant4.io
+Released by R4RPI (resonant4.io)
 
 Exact hydraulic flow computation on rooted tree pipe networks, with validated distinction between:
 
-1. **prescribed leaf-demand problems** — exact edge flows are the sums of downstream demands, and
-2. **common-downstream-pressure split problems** — exact branch splits follow a closed-form equivalent-resistance recursion under the quadratic head-loss law.
+1. **prescribed leaf-demand problems** (exact edge flows are the sums of downstream demands), and
+2. **common-downstream-pressure split problems** (exact branch splits follow a closed-form equivalent-resistance recursion under the quadratic head-loss law).
 
 This repository packages a validated result for **serial-parallel tree networks** relevant to HVAC distribution, district heating branches, irrigation trees, and other acyclic hydraulic layouts.
 
 ## What problem this solves
 
-Design and analysis tools for pipe systems often rely on iterative balancing methods such as Hardy–Cross or more general nonlinear solves. Those methods are necessary for **looped networks**, but for a **tree** they are overkill.
+Design and analysis tools for pipe systems often rely on iterative balancing methods such as Hardy-Cross or more general nonlinear solves. Those methods are necessary for **looped networks**, but for a **tree** they are overkill.
 
 If the network is acyclic and the pressure drop law is quadratic,
 
@@ -182,7 +182,7 @@ Generic nonlinear root-finding over:
 
 ## Repository contents
 
-- `tree_hydraulics.py` — production-ready module with docstrings, type hints, and examples
+- `tree_hydraulics.py`: production-ready module with docstrings, type hints, and examples
 - validation helpers and benchmark entry points
 - exact solvers for both tree interpretations
 
@@ -292,9 +292,9 @@ It prints a JSON verdict including:
 - split-rule verification,
 - an explicit counterexample to overgeneralizing the resistance-only split.
 
-## Positioning relative to Hardy–Cross
+## Positioning relative to Hardy-Cross
 
-This is **not** a claim that Hardy–Cross is obsolete in general. It is a narrower, stronger claim:
+This is **not** a claim that Hardy-Cross is obsolete in general. It is a narrower, stronger claim:
 
 > On a tree, for the validated boundary conditions, there is no need for iterative balancing.
 
@@ -304,12 +304,12 @@ That is useful in practice because many real distribution branches are operated 
 
 If you use or discuss this release, please cite:
 
-**R4RPI** — *tree-hydraulics: Exact hydraulic tree solvers for demand-driven and common-pressure quadratic-loss networks*.
+**R4RPI**. *tree-hydraulics: Exact hydraulic tree solvers for demand-driven and common-pressure quadratic-loss networks*.
 
-Released by R4RPI — resonant4.io
+Released by R4RPI (resonant4.io)
 
 ## About R4RPI
 
 R4RPI, the ResonanT⁴ Research & Product Institute, publishes mathematically precise, engineering-grade research and working implementations. We commercialize selectively and publish what we can substantiate.
 
-Released by R4RPI — resonant4.io
+Released by R4RPI (resonant4.io)
